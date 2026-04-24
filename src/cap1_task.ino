@@ -4,16 +4,15 @@
 
 #define DHTPIN 21
 #define DHTTYPE DHT22
+bool predicao = false;
 bool first = true;
-
 int botoes[] = {23, 4, 5};
 char nutrientes[] = {'N','P','K'};
 DHT dht(DHTPIN, DHTTYPE);
-#include <stdio.h>
 #include <stdlib.h>
 
 
-//FILE *file = fopen("clima.txt", "r");
+
 
 
 void setup() {
@@ -23,65 +22,60 @@ void setup() {
   for (int i = 0; i < 3; i++) {
     pinMode(botoes[i], INPUT_PULLUP);
   }
-
 }
+
 void loop() {
   // valor lido é de 1001, definindo a leitura para 7
   int valor = analogRead(LDR_PIN);
   valor = valor - 994;
 
+if (!predicao){
+
+
   if (first){
 
-
-
-    // char ch;
-    // while ((ch = fgetc(file)) != EOF) {
-    //   putchar(ch);
-    // }
-
-    // fclose(file);
-    // Serial.println(ch);
-    float temp = dht.readTemperature();
-    float hum = dht.readHumidity();
-
-    if (isnan(temp) || isnan(hum)) {
-      Serial.println("Erro ao ler o DHT22");
-      return;
-    }
-
-    if (hum <= 40){
+    
       // ligando relê para aumentar a umidade
-      Serial.print("Umidade em ");
-      Serial.print(hum - 20);
-      Serial.print(" %");
-      Serial.print("\n");
-      Serial.print("Acionando relê para alimentação da bomba d'água...\n");
+      Serial.println("Não há probabilidade de chuva/tempestade nas próximas 12 horas");
+      float temp = dht.readTemperature();
+      float hum = dht.readHumidity();
 
+      if (isnan(temp) || isnan(hum)) {
+        Serial.println("Erro ao ler o DHT22");
+        return;
+      }
+      if (hum <= 40){
+        Serial.print("Umidade em ");
+        Serial.print(hum);
+        Serial.println(" %");
+        Serial.println("Acionando relê para alimentação da bomba d'água...");
+        delay(5000);
+        digitalWrite(RELE, HIGH);
+        Serial.println("Relê acionado");
+        delay(5000);
+        Serial.println("Sistema de irrigação ativado por 5 segundos para aumentar a umidade...");
+        hum = dht.readHumidity() + 10.0;
 
-
-
-      delay(5000);
-      digitalWrite(RELE, HIGH);
-      Serial.print("Relê acionado\n");
-    }
-
-    delay(5000);
-    hum = dht.readHumidity() + 10.0;
-
-    if (hum > 40){
-      // desliga relê
-      Serial.print("Umidade em ");
-      Serial.print(hum);
-      Serial.print(" %");
-      Serial.print("\n");
-      Serial.print("Desligando relê para alimentação da bomba d'água...\n");
-
-
-      digitalWrite(RELE, LOW);
-      Serial.print("Relê desligado\n");
+      }
+      if (hum > 40){
+        // desliga relê
+        Serial.print("Umidade em ");
+        Serial.print(hum);
+        Serial.println(" %");
+        Serial.println("Desligando relê para interromper a o sistema de irrigação...");
+        digitalWrite(RELE, LOW);
+        Serial.println("Relê desligado");
+        Serial.println("Sistema de irrigação desativado");
+      }
+      first = false;
+  }
+}
+else{
+    Serial.println("Há probabilidade de chuva/tempestade nas próximas 12 horas");
+    Serial.println("Sistema de irrigação não sera ativado");
     first = false;
-  }
-  }
+}
+
 
   for (int i = 0; i < 3; i++) {
     if (digitalRead(botoes[i]) == LOW) {
@@ -103,8 +97,10 @@ void loop() {
         delay(1500);
       } else if (nutrientes[i] == 'P') {
         Serial.println("Adicionando Fósforo...");
+        // não tem efeito no pH
       } else if (nutrientes[i] == 'K') {
         Serial.println("Adicionando Potássio...");
+        // não tem efeito no pH
       }
 
     }

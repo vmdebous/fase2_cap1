@@ -2,4 +2,4 @@
 *.tsv
 *.xls
 *.xlsx
-*.env
+.env
