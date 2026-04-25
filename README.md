@@ -16,10 +16,11 @@ RM 573337
 
 ## 👩‍🏫 Professores:
 ### Tutor(a) 
-- Nomear após confirmação
+- <a href="https://www.linkedin.com/in/sabrina-otoni-22525519b">Sabrina Otoni</a>
 
 ### Coordenador(a)
-- Nomear após confirmação
+- <a href="https://www.linkedin.com/company/inova-fusca">André Godoi</a>
+
 
 ---
 
@@ -27,11 +28,15 @@ RM 573337
 
 Este projeto implementa um **Sistema Inteligente de Irrigação Agrícola** que integra tecnologias de IoT, análise de dados climáticos em tempo real e automação de decisões. Desenvolvido como parte do desafio da FarmTech Solutions, o sistema combina monitoramento de sensores com análise probabilística para otimizar o uso de água em cultivos agrícolas, reduzindo desperdícios e maximizando a produtividade.
 
+
 ### Visão Geral da Solução
 
 O projeto une três pilares tecnológicos:
 
 1. **Microcontrolador ESP32 com Sensores (C/Arduino)**: Gerencia leitura de sensores DHT22 (umidade do ar/solo), LDR (pH da terra via luminosidade) e botões de entrada (níveis de Nitrogênio, Fósforo e Potássio). Controla relé para acionamento da bomba d'água.
+
+<img src="fase2_cap1.png"></img>
+
 
 2. **Orquestração e APIs com Python**: Script que realiza chamadas à OpenWeatherMap para capturar dados climáticos em tempo real, armazena histórico em Excel e prepara dados para análise estatística.
 
