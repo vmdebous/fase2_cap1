@@ -11,7 +11,7 @@
 ## FarmTech Solutions - Fase 2, Capítulo 1
 
 ## 👨‍🎓 Integrantes: 
-- <a href="https://www.linkedin.com/in/victor-magalhaes-deboni/">Victor de Magalhães Deboni</a>
+- <a href="https://www.linkedin.com/in/vmdeboni/">Victor de Magalhães Deboni</a>
 
 ## 👩‍🏫 Professores:
 ### Tutor(a) 
@@ -125,23 +125,13 @@ WEATHER_COUNTRY=BR
 **Nota**: Obtenha sua API key gratuitamente em https://openweathermap.org/api
 
 #### 3. Compilar Firmware ESP32
-```bash
-# Abrir projeto em VSCode
-code .
 
-# Terminal integrado VSCode
-pio run --environment esp32-wroom-32
-```
-
+- Utilizar Build da extensão PlatformIO no VSCode
+- 
 #### 4. Iniciar Simulador Wokwi
-```bash
-# No VSCode
-F1 -> "Start Wokwi Simulator"
 
-# Ou via linha de comando
-pio run --environment esp32-wroom-32 --target upload
-```
-
+- Abrir diagram.json no VSCode e "Start Wokwi Simulator"
+- 
 #### 5. Executar Pipeline Completo
 
 **5.1. Coleta de Dados Climáticos (Python → R)**
@@ -199,6 +189,8 @@ IF (clima_atual %in% historico_ultimos_5_dias) THEN
     prob_chuva = (contagem_chuvas / total_periodos)
     previsao = IF (prob_chuva > 50%) THEN "chuva" ELSE "sem_chuva"
 ```
+
+É realizado um estudo probabilístico condicional analisando a medição atual recebida pela API e determinando a maior frequência para mesmo cenário
 
 ```python
 # Python - Decisão final
@@ -451,15 +443,6 @@ Sugestões, melhorias e correções são bem-vindas! Para contribuir:
 
 ---
 
-## 📞 Suporte e Contato
-
-Para dúvidas, sugestões ou reportar problemas:
-
-- 📧 Email: victor.deboni@fiap.com.br
-- 🔗 LinkedIn: [Victor de Magalhães Deboni](https://www.linkedin.com/in/victor-magalhaes-deboni/)
-- 💬 Issues: [Abrir uma issue no GitHub](https://github.com/vmdebous/fase2_cap1/issues)
-
----
 
 **Desenvolvido com ❤️ para a FarmTech Solutions**  
 **FIAP - Faculdade de Informática e Administração Paulista**  
