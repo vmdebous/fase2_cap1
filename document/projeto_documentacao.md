@@ -10,7 +10,7 @@ Sistema Inteligente de Irrigação com Análise Probabilística de Dados Climát
 
 #### Integrantes do Grupo
 
-- Victor de Magalhães Deboni - RM: [Adicionar RM]
+- Victor de Magalhães Deboni - RM: [573337]
 
 ## Sumário
 
